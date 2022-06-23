@@ -1,0 +1,80 @@
+
+limage3='E:\DSC_0365.JPG'
+
+img8=imread(limage3);
+
+imshow(img8)
+
+title("original training image");
+
+figure("Alphamap");
+
+ 
+
+image1='E:\DSC_0365.JPG'
+
+image2=imread(image1);
+
+image22=rgb2hsv(image2);
+
+imshow(image22);
+
+title('RGB Transformation');
+
+figure("Name");
+
+ 
+
+imageRe='E:\DSC_0365.JPG'
+
+image22=imread(imageRe);
+
+imageFe=rgb2hsv(image22);
+
+ 
+
+[rows columns numberofColorBands] = size(imageFe)
+
+ 
+
+PatternImage = zeros(size(imageFe));
+
+for row=2:rows-1
+
+    for col=2:columns-1
+
+        centerPixel=image(row,col);
+
+        pixel7=imageFe(row-1,col-1)>centerPixel;
+
+        pixel6=imageFe(row-1,col-1)>centerPixel;
+
+        pixel5=imageFe(row-1,col-1)>centerPixel;
+
+        pixel4=imageFe(row-1,col-1)>centerPixel;
+
+        pixel3=imageFe(row-1,col-1)>centerPixel;
+
+        pixel2=imageFe(row-1,col-1)>centerPixel;
+
+        pixel1=imageFe(row-1,col-1)>centerPixel;
+
+        pixel0=imageFe(row-1,col-1)>centerPixel;
+
+        PatternImage(rol,col)=uint8(...
+
+            pixel7*2^7+pixel6*2^6+...
+
+            pixel7*2^5+pixel6*2^2+...
+
+            pixel7*2^3+pixel6*2^6+...
+
+            pixel11*2+pixel1);
+
+    end
+
+end
+
+imahow(PatternImage, []);
+
+title('MB LBP Extracted Features ')
